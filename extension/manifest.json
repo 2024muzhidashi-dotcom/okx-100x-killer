@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "OKX 100x Killer",
+  "version": "1.0.0",
+  "description": "Disable high leverage (e.g., 100x) trading on OKX and require a passphrase to unlock.",
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": [
+    "https://www.okx.com/*",
+    "https://www.okx.com.cn/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.okx.com/*",
+        "https://www.okx.com.cn/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "options_page": "options.html"
+}
