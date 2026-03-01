@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Disable Protection</title>
+  <style>
+    body {
+      font-family: system-ui;
+      padding: 40px;
+      text-align: center;
+    }
+    input {
+      width: 400px;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>解除 100x 保护</h1>
+  <p>请输入解除口令：</p>
+  <input id="passphrase" type="text" placeholder="输入解除宣言" />
+  <br>
+  <button onclick="checkPassphrase()">确认</button>
+
+  <script>
+    function checkPassphrase() {
+      const value = document.getElementById("passphrase").value;
+      const required = "我要做赌狗，我愿意承担失去一切的代价！";
+
+      if (value === required) {
+        chrome.storage.local.set({ unlocked: true }, () => {
+          alert("保护已解除");
+        });
+      } else {
+        alert("口令错误");
+      }
+    }
+  </script>
+</body>
+</html>
